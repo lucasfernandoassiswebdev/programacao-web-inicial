@@ -3,15 +3,18 @@ const Artigo = require('../models/Artigo')();
 module.exports = function () {
     const controller = {};
 
-    controller.novo = function (req, res) {
-        const artigo = new Artigo(req.body);
-        artigo.save(function (erro) {
-            if (erro)
-                res.status(500).send('Deu ruim');
+    controller.get = function (req, res) {
+        res.status(200).send(Artigo.find({}));
+    };
 
-            res.send(201);
+    controller.post = function (req, res) {
+        Artigo.create(req.body).then(function () {
+            res.send(201).end();
+        }, function (error) {
+            console.log(error);
+            res.send(500).end();
         });
-    }
+    };
 
     return controller;
 }
