@@ -5,6 +5,9 @@ var logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const artigoRouter = require('./routes/artigo');
+const tipoRouter = require('./routes/tipo');
+const linhaRouter = require('./routes/linha');
+const tamanhoRouter = require('./routes/tamanho');
 
 var app = express();
 
@@ -19,6 +22,8 @@ db('mongodb://localhost:27017/brecho-not');
 
 app.use('/', indexRouter);
 app.use('/artigo', artigoRouter);
-
+app.use('/tipo', tipoRouter);
+app.use('/linha', linhaRouter);
+app.use('/tamanho', tamanhoRouter);
 
 module.exports = app;
